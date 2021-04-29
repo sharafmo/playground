@@ -1,0 +1,33 @@
+{% extends 'itoys/base.html' %}
+
+{% block title %}Contact{% endblock title %}
+
+{% block content %}
+
+<div class="container mt-3 p-4">
+    <h3 class="text-center my-3 p-4">Contact us</h3>
+    <form class="row g-3" action="/contact" method="POST">
+        {% csrf_token %}
+        <div class="col-md-6">
+            <label for="inputFirstName4" class="form-label">First name</label>
+            <input type="text" class="form-control" id="f_name" name="f_name">
+        </div>
+        <div class="col-md-6">
+            <label for="inputLastName4" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="l_name" name="l_name">
+        </div>
+        <div class="col-12 my-3">
+            <label for="inputEmail4" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputEmail4" name="email">
+        </div>
+        <div class="col-12 mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Toy's information</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-info">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

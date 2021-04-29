@@ -1,0 +1,73 @@
+{% extends 'itoys/base.html' %}
+
+{% block title %}Registration{% endblock title %}
+
+{% block content %}
+
+<div class="container mt-3 p-4">
+    <div class="container-md pt-4">
+        <h3 class="text-center">Welcome new members! Please register!</h3>
+    </div>
+    <div class="container mt-3">
+        <form action="/create_user" method="POST" class="row g-3">
+            {% csrf_token %}
+            <div class="col-md-6">
+                <label for="inputFirstName4" class="form-label">First name</label>
+                <input type="text" name="f_n" class="form-control" id="inputFirstName4">
+                </div>
+                <div class="col-md-6">
+                <label for="inputLastName4" class="form-label">Last name</label>
+                <input type="text" name="l_n" class="form-control" id="inputLastName4">
+                </div>
+                <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" id="inputEmail4">
+                </div>
+                <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Password</label>
+                <input type="password" name="pw" class="form-control" id="inputPassword4">
+                </div>
+                <div class="col-12">
+                <label for="inputPassword4" class="form-label">Confirm Password</label>
+                <input type="password" name="conf_pw" class="form-control" id="inputPassword4">
+                </div>
+                <div class="col-12 mt-3">
+                    <button type="submit" class="btn btn-info">Register</button>
+                </div>
+        </form>
+    </div>
+
+    <div class="container">
+        {% if messages %}
+            <ul class="messages">    
+                {% for error in messages %}    
+                <li> {{ error }} </li>    
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+
+    <div class="container">
+        <h3 class="text-center">Already have an account!</h3>
+    </div>
+    <div class="container mb-3">
+        <form action="/login" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+            <label for="InputEmail1" class="form-label">Email address</label>
+            <input type="email" name="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+            <label for="InputPassword1" class="form-label">Password</label>
+            <input type="password" name="pw" class="form-control" id="InputPassword1">
+            </div>
+            <button type="submit" class="btn btn-info">Login</button>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock content %}

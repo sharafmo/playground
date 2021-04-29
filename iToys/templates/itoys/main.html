@@ -1,0 +1,98 @@
+{% extends 'itoys/base.html' %}
+
+{% block title %}Main{% endblock title %}
+
+{% block content %}
+
+<div class="container-fluid mt-4 px-0">
+    <div class="container-md p-4">
+        <div class="container mb-3">
+            <div class="container p-3">
+                <h2 class="text-center">Give us some information about your cool Toy {{request.session.user_name}}</h2>
+            </div>
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+            <div class="container mt-3">
+                <form action="/create_add" method="POST" enctype='multipart/form-data' class="row g-3">
+                    {% csrf_token %}
+                    <div class="col-md-9">
+                        <label for="exampleFormControlInput1">Name</label>
+                        <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Toy's name">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="exampleFormControlSelect1">Age</label>
+                        <select class="form-control" name="age" id="exampleFormControlSelect1">
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                        </select>
+                    </div>
+                    <div class="col-md-9">
+                        <label for="exampleFormControlInput1">City</label>
+                        <input type="text" name="city" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="exampleFormControlSelect1">Condition</label>
+                        <select class="form-control" name="condition" id="exampleFormControlSelect1">
+                            <option>Fair</option>
+                            <option>Good</option>
+                            <option>Very good</option>
+                            <option>Excellent</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="exampleFormControlTextarea1">Description</label>
+                        <textarea class="form-control" name="desc" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Image</label>
+                        <input type="file" name="header_image" class="form-control-file" id="exampleFormControlFile1" accept="image/*">
+                    </div>
+                    <div class="col-12 mt-3">
+                        <button type="submit" class="btn btn-info">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h3 class="text-center">Available Toys at the Playground</h3>
+        <table class="table table-hover">
+            <thead>
+                <th>Toy's name</th>
+                <th>Age</th>
+                <th>City</th>
+                <th>Condition</th>
+                <th>Description</th>
+                <th>Photo</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                {% for add in inventory reversed %}
+                <tr>
+                    <td>{{ add.name }}</td>
+                    <td>{{ add.age }}</td>
+                    <td>{{ add.city }}</td>
+                    <td>{{ add.condition }}</td>
+                    <td>{{ add.desc }}</td>
+                    {% if add.header_image %}
+                        <td><img style="height: 100px;" src="{{ add.header_image.url }}" alt="toysPic"></td>
+                    {% endif %}
+                    {% if add.creator.id == request.session.user_id %}
+                        <td><a href="/delete/{{ add.id }}">Delete</a></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
