@@ -30,6 +30,11 @@
                         <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
                     </li>
                 </ul>
+                <form class="d-flex ml-auto" method=POST action="{% url 'search-add' %}">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="search" name="searched" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning" type="submit">Search</button>
+                </form>
             </div>
         </div>
     </nav>

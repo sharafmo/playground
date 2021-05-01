@@ -1,0 +1,51 @@
+{% extends 'itoys/base.html' %}
+
+{% block title %}Main{% endblock title %}
+
+{% block content %}
+
+
+<div class="container-fluid mt-4 px-0">
+    {% if searched %}
+        <div class="container">
+            <h3 class="text-center"> you searched for {{ searched }}</h3>
+            <table class="table table-hover">
+                <thead>
+                    <th>Toy's name</th>
+                    <th>Age</th>
+                    <th>City</th>
+                    <th>Condition</th>
+                    <th>Description</th>
+                    <th>Photo</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    {% for add in adds %}
+                        <tr>
+                            <td>{{ add.name }}</td>
+                            <td>{{ add.age }}</td>
+                            <td>{{ add.city }}</td>
+                            <td>{{ add.condition }}</td>
+                            <td>{{ add.desc }}</td>
+                            {% if add.header_image %}
+                                <td><img style="height: 100px;" src="{{ add.header_image.url }}" alt="toysPic"></td>
+                            {% endif %}
+                            {% if add.creator.id == request.session.user_id %}
+                                <td><button type="button" class="btn btn-warning"><a href="/delete/{{ add.id }}">Delete</a></button></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="container">
+            <h3 class="text-center">You did not search for a toy</h3>
+        </div>
+    {% endif %}    
+</div>
+
+
+
+
+{% endblock content %}

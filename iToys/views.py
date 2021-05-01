@@ -79,6 +79,17 @@ def create_add(request):
         return redirect('/main')
 
 
+def search_add(request):
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        adds = Add.objects.filter(name__contains= searched)
+        context = {
+            'searched' : searched, 'adds' : adds}
+        return render (request, 'itoys/search_add.html', context)
+    else:
+        return redirect('/main')
+
+
 
 def delete_add(request, add_id):
     Add.objects.get(id=add_id).delete()
