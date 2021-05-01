@@ -87,7 +87,7 @@
                         <td><img style="height: 100px;" src="{{ add.header_image.url }}" alt="toysPic"></td>
                     {% endif %}
                     {% if add.creator.id == request.session.user_id %}
-                        <td><a href="/delete/{{ add.id }}">Delete</a></td>
+                        <td><button><a href="/delete/{{ add.id }}">Delete</a></button></td>
                     {% endif %}
                 </tr>
                 {% endfor %}
