@@ -6,17 +6,17 @@
 
 <div class="container mt-3 p-4">
     <div class="container-md pt-4">
-        <h3 class="text-center">Welcome new members! Please register!</h3>
+        <h3 class="text-center">Welcome New Members! Please Register!</h3>
     </div>
     <div class="container mt-3">
         <form action="/create_user" method="POST" class="row g-3">
             {% csrf_token %}
             <div class="col-md-6">
-                <label for="inputFirstName4" class="form-label">First name</label>
+                <label for="inputFirstName4" class="form-label">First Name</label>
                 <input type="text" name="f_n" class="form-control" id="inputFirstName4">
                 </div>
                 <div class="col-md-6">
-                <label for="inputLastName4" class="form-label">Last name</label>
+                <label for="inputLastName4" class="form-label">Last Name</label>
                 <input type="text" name="l_n" class="form-control" id="inputLastName4">
                 </div>
                 <div class="col-md-6">
@@ -49,13 +49,13 @@
 
 
     <div class="container">
-        <h3 class="text-center">Already have an account!</h3>
+        <h3 class="text-center">Already Have an Account!</h3>
     </div>
     <div class="container mb-3">
         <form action="/login" method="POST">
             {% csrf_token %}
             <div class="mb-3">
-            <label for="InputEmail1" class="form-label">Email address</label>
+            <label for="InputEmail1" class="form-label">Email Address</label>
             <input type="email" name="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
